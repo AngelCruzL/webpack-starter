@@ -1,4 +1,1 @@
-import './styles.css';
-
-const name = 'Luis';
-console.log(`Hola ${name} ${15 / 3}`);
+// Coloca tu código de javascript aquí
