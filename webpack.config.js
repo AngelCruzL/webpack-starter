@@ -17,13 +17,17 @@ module.exports = {
         },
       },
       {
-        test: /\.css$/i,
-        exclude: /styles.css$/,
-        use: ['style-loader', 'css-loader'],
-      },
-      {
-        test: /styles.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+        test: /\.s[ac]ss$/i,
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              implementation: require('node-sass'),
+            },
+          },
+        ],
       },
       {
         test: /\.(png|jpe?g|gif)$/i,
