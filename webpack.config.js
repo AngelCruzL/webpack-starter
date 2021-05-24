@@ -4,9 +4,9 @@ const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  output: {
-    clean: true,
-  },
+
+  entry: './src/index.ts',
+
   module: {
     rules: [
       {
@@ -37,8 +37,18 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
     ],
   },
+
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
+  },
+
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',

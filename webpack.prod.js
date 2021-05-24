@@ -1,3 +1,5 @@
+const path = require('path');
+
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
@@ -7,9 +9,12 @@ const TerserPlugin = require('terser-webpack-plugin');
 module.exports = {
   mode: 'production',
 
+  entry: './src/index.ts',
+
   output: {
     clean: true,
     filename: 'main.[contenthash].js',
+    path: path.resolve(__dirname, 'dist'),
   },
 
   optimization: {
@@ -39,6 +44,11 @@ module.exports = {
         ],
       },
       {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
+      {
         test: /\.m?js$/,
         exclude: /node_modules/,
         use: {
@@ -49,6 +59,10 @@ module.exports = {
         },
       },
     ],
+  },
+
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
   },
 
   plugins: [
